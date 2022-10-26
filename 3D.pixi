@@ -1,0 +1,42 @@
+wrong=new(100, 100, INT)
+r=50
+fov=2
+lov=500
+maxt=250
+start:
+clear()
+x=-50
+while x<51
+{
+  y=-50
+  while y<51
+  {
+  t=0
+  while t<250
+  {
+  if wrong[0, x+150]==0
+  {
+  if pow(pow(fov*t, 2)+pow(x/15/fov*t, 2), .5)<lov
+  {
+    if pow(pow((fov*t)-250, 2)+pow((x/15/fov*t)+150, 2)+pow((y/15/fov*t), 2), .5)<100
+    {
+      //dot(fov*t, x/15/fov*t, #ff0000)
+      fbox(x*10, y*10, 10, 10, get_color(100-(y/15/fov*t), 0, 0))
+      wrong[y+50, x+50]=1
+    }
+    if abs((fov*t)-300)+abs((x/15/fov*t)-90)+abs((y/15/fov*t))<100
+    {
+      //dot(fov*t, x/15/fov*t, #ff0000)
+      fbox(x*10, y*10, 10, 10, get_color(0, 100-(y/15/fov*t), 0))
+      wrong[y+50, x+50]=1
+    }
+  }
+  }
+  t=t+1
+  }
+  y=y+1
+  }
+  x=x+1
+}
+frame()
+goto start
